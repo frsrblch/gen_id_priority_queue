@@ -1,4 +1,4 @@
-use gen_id_allocator::UntypedId;
+use gen_id_allocator::untyped::UntypedId;
 use gen_id_component::UntypedComponent;
 use std::ops::{Index, IndexMut};
 
@@ -280,7 +280,7 @@ fn get_children(index: usize, len: usize, arity: usize) -> std::ops::Range<usize
 #[cfg(test)]
 mod test {
     use super::*;
-    use gen_id_allocator::UntypedAllocator;
+    use gen_id_allocator::untyped::UntypedAllocator;
     use rand::distributions::{Distribution, Standard};
     use rand::prelude::IteratorRandom;
     use rand::{thread_rng, Rng};
@@ -424,7 +424,7 @@ mod test {
     }
 
     fn get_random_id<R: Rng>(alloc: &UntypedAllocator, rng: &mut R) -> Option<UntypedId> {
-        alloc.ids().choose(rng).copied()
+        alloc.ids().choose(rng)
     }
 
     enum Action {
